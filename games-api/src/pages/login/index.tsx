@@ -34,9 +34,14 @@ export default function Login() {
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
     };
+
+    const doLogin = (e: { preventDefault: () => void; }) => {
+      e.preventDefault();
+      console.log("Logged sucessfully!")
+    }
     return<>
         <Container color="primary" sx={styleContainer}>
-          <FormControl>
+          <FormControl onSubmit={doLogin}>
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
             <OutlinedInput
@@ -67,7 +72,7 @@ export default function Login() {
           />
         </FormControl>
             <Box alignItems="center">
-              <Button variant="contained" color="secondary"> Login</Button>
+              <Button variant="contained" color="secondary" onClick={doLogin}> Login</Button>
             </Box>
           </FormControl>
         </Container>
