@@ -3,4 +3,4 @@ import * as userController from './user.controller';
 const router = Router();
 
 router
-    .get('/', userController.pegarUm)
+    .get('/', userController.getAll)
