@@ -6,5 +6,5 @@ const port = 3001;
 app.use(cors);
 
 app.listen(port, () => {
-    return console.log('Funcionou!');
+    console.log(`Server is runnin at`, port)
 })
