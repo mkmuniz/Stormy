@@ -1,21 +1,14 @@
 const mysql = require('mysql2');
-require('dotenv').config();
+const express = require('express');
+const app = express();
+const cors = require('cors');
 
-class database {
-    static start(host: any, user: any, password: any, database: any, connectionLimit: any) {
-        try {
-            var conn = mysql.createPool({
-                host: host,
-                user: user,
-                password: password,
-                database: database,
-                connectionLimit: connectionLimit 
-            })
-            console.log('Database connected!');
-        } catch(err) {
-            return err;
-        }
-    }
-}
+app.use(cors);
 
-module.exports = database;
+export const connection = mysql.createPool({
+    host: process.env.HOST,
+    user: process.env.USERNAME,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+    connectionLimit: process.env.LIMIT
+})

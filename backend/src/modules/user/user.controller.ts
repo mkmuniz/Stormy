@@ -1,12 +1,9 @@
+import userService from "./user.service";
 
-class userControl {
-    static getAll(req: any, res: any) {
-        try {
-            return console.log('Route user acessed!');
-        } catch (err) {
-            return err;
-        }
+export async function getAll(req: any, res: any) {
+    try {
+        return await userService.getAll();
+    } catch (err) {
+        return err;
     }
 }
-
-module.exports = userControl;
