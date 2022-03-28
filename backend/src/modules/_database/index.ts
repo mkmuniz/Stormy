@@ -1,19 +1,22 @@
 const mysql = require('mysql2');
+const cors = require('cors');
+const express = require('express');
+const app = express();
 
-export function dbQuery(sqlQry: string){
+app.use(cors());
+export function dbQuery(sqlQry: string) {
+  try {
     const connection = mysql.createPool({
-        host: process.env.HOST,
-        user: process.env.USERNAME,
-        password: process.env.PASSWORD,
-        database: process.env.DATABASE,
-        connectionLimit: process.env.LIMIT
+      host: 'localhost',
+      user: 'root@localhost',
+      password: 'MIKAel@512834',
+      database: 'stormydb',
+      connectionLimit: '50'
     })
-   
-    connection.query(sqlQry, function(error: any, results: any, fields: any){
-        if(error) 
-          console.log(error);
-        else
-          console.log(results);
-        console.log('Requisição executada!');
+    connection.query(sqlQry, function (error: any, results: any, fields: any) {
+      console.log('Requisição executada!');
     });
+  } catch (err) {
+    return console.log(err);
   }
+}

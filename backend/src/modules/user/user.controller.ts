@@ -1,9 +1,11 @@
 import userService from "./user.service";
 
+/**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+*/
 export async function getAll(req: any, res: any) {
-    try {
-        return await userService.getAll();
-    } catch (err) {
-        return res.json(err);
-    }
+    return await userService.getAll()
+        .then(data => res.json(data))
+        .catch(data => res.json(data))
 }
