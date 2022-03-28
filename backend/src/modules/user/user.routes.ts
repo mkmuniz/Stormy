@@ -1,6 +1,8 @@
-import { Router } from "express";
-import * as userController from './user.controller';
+const userController = require('./user.controller');
+const Router = require('express');
 const router = Router();
 
 router
-    .get('/', userController.getAll)
+    .get('/', userController.getAll);
+
+module.exports = router;
