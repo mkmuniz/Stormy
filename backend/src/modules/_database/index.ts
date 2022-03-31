@@ -11,13 +11,13 @@ export function dbQuery(sqlQry: string) {
     const connection = mysql.createPool({
       host: 'localhost',
       user: 'root',
-      password: 'MIKAel@512834',
+      password: '12345',
       database: 'stormydb',
       connectionLimit: '50'
     })
     connection.query(sqlQry, function (error: any, results: any, fields: any) {
       if(!error)
-      return(results)
+      console.log(results)
       else
       console.log(error);
     });
