@@ -15,6 +15,15 @@ export default class userService {
             return console.log('Error');
         }
     }
+
+    static async postOne(body: any) {
+        try {
+            return dbQuery(`INSERT INTO user (name) VALUES ('${body.name}');`);
+        } catch(err) {
+            return console.log('Error');
+        }
+    }
+
     static async patchOne(name: string) {
         try {
             return dbQuery(`SELECT * FROM user WHERE name = '${name}';`);

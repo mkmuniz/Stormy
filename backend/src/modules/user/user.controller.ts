@@ -10,6 +10,10 @@ export async function getAll(req: any, res: any) {
         .catch(data => res.json(data))
 }
 
+/**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+*/
 export async function getOne(req: any, res: any) {
     const userName = req.params.name;
     return await userService.getOne(userName)
@@ -17,13 +21,21 @@ export async function getOne(req: any, res: any) {
         .catch(data => res.json(data))
 }
 
-export async function postAll(req: any, res: any) {
-    const body = req.body;
-    return await userService.getOne(body)
+/**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+*/
+export async function postOne(req: any, res: any) {
+    const { body } = req;
+    return await userService.postOne(body)
         .then(data => res.json(data))
         .catch(data => res.json(data))
 }
 
+/**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+*/
 export async function patchOne(req: any, res: any) {
     const id = req.params.id;
     return await userService.getOne(id)
