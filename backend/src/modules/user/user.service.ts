@@ -1,23 +1,25 @@
-import { dbQuery } from '../_database/index'
+import { connection } from '../_database/index'
 import { randomUUID } from 'crypto';
 const bcrypt = require('bcrypt');
 
 
 export default class userService {
     static async getAll() {
+        const results = await connection.query('SELECT * FROM user;');
         try {
-            return dbQuery('SELECT * FROM user;');
+            return results;
         } catch(err) {
             return console.log('Error');
         }
     }
-    static async getOne(id: string) {
+    /* static async getOne(id: string) {
         try {
             return dbQuery(`SELECT * FROM user WHERE ID = '${id}';`);
         } catch(err) {
             return console.log('Error');
         }
     }
+
 
     static async postOne(body: any) {
         const id = randomUUID();
@@ -43,5 +45,5 @@ export default class userService {
         } catch(err) {
             return console.log('Error');
         }
-    }
+    }*/
 }
