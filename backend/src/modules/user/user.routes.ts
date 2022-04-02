@@ -4,7 +4,7 @@ const router = Router();
 
 router
     .get('/', userController.getAll)
-    .get('/:name', userController.getOne)
+    .get('/:id', userController.getOne)
     .post('/', userController.postOne)
     .patch('/:id', userController.patchOne)
     .delete('/:id', userController.deleteOne)

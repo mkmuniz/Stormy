@@ -15,10 +15,14 @@ export async function getAll(req: any, res: any) {
  * @param {import("express").Response} res 
 */
 export async function getOne(req: any, res: any) {
-    const userName = req.params.name;
-    return await userService.getOne(userName)
-        .then(data => res.json(data))
-        .catch(data => res.json(data))
+    const { id } = req.params;
+    try {
+        return await userService.getOne(id)
+            .then(data => res.json(data))
+            .catch(data => res.json(data))   
+    } catch(err) {
+        return err;
+    }
 }
 
 /**

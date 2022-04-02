@@ -4,8 +4,11 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 
 app.use(cors());
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 export function dbQuery(sqlQry: string) {
   try {
     const connection = mysql.createPool({
@@ -17,7 +20,7 @@ export function dbQuery(sqlQry: string) {
     })
     connection.query(sqlQry, function (error: any, results: any, fields: any) {
       if(!error)
-      console.log(results)
+      return fields;
       else
       console.log(error);
     });

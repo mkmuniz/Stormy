@@ -10,8 +10,10 @@
     "@types/node": "^16.11.26",
     "@types/react": "^17.0.40",
     "@types/react-dom": "^17.0.13",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "hashlib": "^1.0.1",
     "mysql2": "^2.3.3",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
@@ -19,13 +21,14 @@
     "react-scripts": "5.0.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.2",
+    "uuid": "^8.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "ts-node ./src/server.ts",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"  
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
