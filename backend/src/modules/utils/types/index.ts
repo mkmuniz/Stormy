@@ -8,8 +8,8 @@ export const HTTP_STATUS = {
 }
 
 export const ERRO_MESSAGE = {
-    BAD_REQUEST: "Erro na requisição, verificar url e corpo",
-    UNAUTHORIZED: "Não autorizado",
-    NOT_FOUND: "Não encontrado",
-    INTERNAL_SERVER_ERROR: "Problema interno"
+    BAD_REQUEST: "Error on request be asured that your URL is correct.",
+    UNAUTHORIZED: "Not authorized",
+    NOT_FOUND: "Not NOT_FOUND",
+    INTERNAL_SERVER_ERROR: "Internal Problem"
 }
