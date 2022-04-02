@@ -7,16 +7,17 @@ export default class userService {
     static async getAll() {
         const results = await connection.query('SELECT * FROM user;');
         try {
-            return results;
-        } catch(err) {
-            return console.log('Error');
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
         }
     }
-    /* static async getOne(id: string) {
+    static async getOne(id: string) {
+        const results = await connection.query(`SELECT * FROM user WHERE ID = '${id}';`)
         try {
-            return dbQuery(`SELECT * FROM user WHERE ID = '${id}';`);
-        } catch(err) {
-            return console.log('Error');
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
         }
     }
 
@@ -25,25 +26,29 @@ export default class userService {
         const id = randomUUID();
         const salt = await bcrypt.genSalt(10);
         const password = await bcrypt.hash(body.password, salt);
+        const results = await connection.query(`INSERT INTO user (ID, username, email, password) VALUES ('${id}', '${body.username}', '${body.email}', '${password}');`)
         try {
-            return dbQuery(`INSERT INTO user (ID, username, email, password) VALUES ('${id}', '${body.username}', '${body.email}', '${password}');`);
-        } catch(err) {
-            return console.log('Error');
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
         }
     }
 
-    static async patchOne(name: string) {
+    static async patchOne(id: string) {
+        const results = await connection.query(`SELECT * FROM user WHERE name = '${id}';`);
         try {
-            return dbQuery(`SELECT * FROM user WHERE name = '${name}';`);
-        } catch(err) {
-            return console.log('Error');
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
         }
     }
-    static async deleteOne(name: string) {
+
+    static async deleteOne(id: string) {
+        const results = await connection.query(`DELETE FROM user WHERE ID = '${id}';`);
         try {
-            return dbQuery(`SELECT * FROM user WHERE name = '${name}';`);
-        } catch(err) {
-            return console.log('Error');
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
         }
-    }*/
+    }
 }
