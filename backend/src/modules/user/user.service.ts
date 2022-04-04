@@ -34,8 +34,8 @@ export default class userService {
         }
     }
 
-    static async patchOne(id: string) {
-        const results = await connection.query(`SELECT * FROM user WHERE name = '${id}';`);
+    static async patchOne(id: string, body: any) {
+        const results = await connection.query(`UPDATE user SET username = ? WHERE ID = ?;`, [body.username, id]);
         try {
             return results[0];
         } catch(err: any) {

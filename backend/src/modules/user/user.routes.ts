@@ -7,4 +7,5 @@ router
     .get('/:id', userController.getOne)
     .post('/', userController.postOne)
     .delete('/:id', userController.deleteOne)
+    .patch('/:id', userController.patchOne)
 module.exports = router;

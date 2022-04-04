@@ -41,3 +41,14 @@ export async function deleteOne(req: express.Request, res: express.Response) {
     const results = await userService.deleteOne(id);
     return res.status(RESPONSE.HTTP_STATUS.OK).send(results);
 }
+
+/**
+ * @param {import("express").Request} req 
+ * @param {import("express").Response} res 
+*/
+export async function patchOne(req: express.Request, res: express.Response) {
+    const { id } = req.params;
+    const { body } = req;
+    const results = await userService.patchOne(id, body);
+    return res.status(RESPONSE.HTTP_STATUS.OK).send(results);
+}
