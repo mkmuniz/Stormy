@@ -3,12 +3,12 @@ import Container from '@mui/material/Container';
 import { Button, FormControl, InputLabel, TextField } from '@mui/material';
 import { State } from './interface';
 import Box from '@mui/material/Box';
-import { styleContainer } from './style/style';
 import { InputAdornment } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IconButton } from '@mui/material';
+import { palette } from '@material-ui/system';
 
 export default function Login() {
     const [values, setValues] = React.useState<State>({
@@ -40,9 +40,21 @@ export default function Login() {
       console.log("Logged sucessfully!")
     }
 
+    const styles = {
+      container: {
+        display: 'flex',
+        alignItems: 'center',
+        height: '100vh',
+        background: 'linear-gradient(45deg, #aa6775 30%, #984355 90%)' // Works
+      },
+    
+      child: {
+        backgroundColor: 'yellow' // Does nothing
+      }
+    };
     
     return<>
-        <Container color="primary" sx={styleContainer}>
+      <Container color="primary" sx={{width: '60%', height: '80%', margin: 'auto', color: styles.child}}>
           <FormControl onSubmit={doLogin}>
           <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
