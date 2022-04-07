@@ -1,14 +1,13 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import { Button, FormControl, InputLabel, TextField } from '@mui/material';
+import { Button, FormControl, InputLabel, Grid } from '@mui/material';
 import { State } from './interface';
-import Box from '@mui/material/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import { InputAdornment } from '@mui/material';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IconButton } from '@mui/material';
-import { palette } from '@material-ui/system';
 
 export default function Login() {
     const [values, setValues] = React.useState<State>({
@@ -54,16 +53,17 @@ export default function Login() {
     };
     
     return<>
-      <Container color="primary" sx={{width: '60%', height: '80%', margin: 'auto', color: styles.child}}>
+    <Grid container direction="column" alignItems="center" justifyContent="center" bgcolor="red" width="50%" height="60%" mx="auto">
+    <Box justifyContent="center">
           <FormControl onSubmit={doLogin}>
-          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
             <OutlinedInput
               id="outlined-adornment-password"
               label="Text"
             />
           </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
@@ -85,10 +85,11 @@ export default function Login() {
             label="Password"
           />
         </FormControl>
-            <Box alignItems="center">
-              <Button variant="contained" color="secondary" onClick={doLogin}> Login</Button>
+            <Box textAlign="center">
+              <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
             </Box>
           </FormControl>
-        </Container>
+        </Box>
+    </Grid>
     </>
 }
