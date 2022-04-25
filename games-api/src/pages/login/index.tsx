@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import { Button, FormControl, InputLabel, Grid } from '@mui/material';
+import { Button, FormControl, InputLabel, Grid, Link } from '@mui/material';
 import { State } from './interface';
 import Box, { BoxProps } from '@mui/material/Box';
 import { InputAdornment } from '@mui/material';
@@ -8,6 +8,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IconButton } from '@mui/material';
+import './index.css';
 
 export default function Login() {
     const [values, setValues] = React.useState<State>({
@@ -53,7 +54,7 @@ export default function Login() {
     };
     
     return<>
-    <Grid container direction="column" alignItems="center" justifyContent="center" bgcolor="red" width="50%" height="60%" mx="auto">
+    <Grid container direction="column" alignItems="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="10%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
     <Box justifyContent="center">
           <FormControl onSubmit={doLogin}>
           <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
@@ -84,11 +85,13 @@ export default function Login() {
             }
             label="Password"
           />
+          <Link href="">Did you forget password?</Link>
+          <Link href="/user/signup">Dont have an account?</Link>
         </FormControl>
             <Box textAlign="center">
               <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
             </Box>
-          </FormControl>
+        </FormControl>
         </Box>
     </Grid>
     </>

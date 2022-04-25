@@ -12,6 +12,7 @@ export default class userService {
             return console.log(err as Error);
         }
     }
+    
     static async getOne(id: string) {
         const results = await connection.query(`SELECT * FROM user WHERE ID = '${id}';`)
         try {
