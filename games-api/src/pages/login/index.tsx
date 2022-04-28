@@ -88,7 +88,7 @@ export default function Login() {
             <Link href="/forgotpassword" underline="none" sx={{ mt: 5 }}>Did you forget password?</Link>
             <Link href="/user/signup" underline="none" sx={{ mb: 5 }}>Dont have an account?</Link>
         </FormControl>
-            <Box textAlign="center">
+            <Box textAlign="center" sx={{ mb: 3 }}>
               <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
             </Box>
         </FormControl>
