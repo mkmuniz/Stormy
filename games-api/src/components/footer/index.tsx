@@ -7,12 +7,12 @@ export default function Footer() {
         <BottomNavigation sx={{ textAlign: 'center', color: 'secondary.main' }}>
             <Grid container >
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: '100%', bgcolor: 'background.paper' }}>
                         <h4>Apresentação</h4>
                         <ListItem>
                             <ListItemAvatar>
                                 <Avatar>
-                                    ASDSAD
+                                    Instituição
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary="Photos" />
@@ -20,76 +20,38 @@ export default function Footer() {
                         <ListItem>
                             <ListItemAvatar>
                                 <Avatar>
-                                    ASDSAD
+                                    Parceria
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary="Work" />
                         </ListItem>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    SDAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Vacation" />
-                        </ListItem>
                     </List>
                 </Grid>
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: "100%", bgcolor: 'background.paper' }}>
                         <h4>Suporte</h4>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    ASDSAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Photos" />
+                            Teste
                         </ListItem>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    ASDSAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Work" />
+                            Teste
                         </ListItem>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    SDAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Vacation" />
+                            Teste
                         </ListItem>
                     </List>
                 </Grid>
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: "100%", bgcolor: 'background.paper' }}>
                         <h4>Contato</h4>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    ASDSAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Photos" />
+                            Teste
                         </ListItem>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    ASDSAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Work" />
+                            Teste
                         </ListItem>
                         <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    SDAD
-                                </Avatar>
-                            </ListItemAvatar>
-                            <ListItemText primary="Vacation" />
+                            Teste
                         </ListItem>
                     </List>
                 </Grid>
