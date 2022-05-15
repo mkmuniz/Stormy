@@ -1,6 +1,8 @@
 import React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
-import { Avatar, Box, Grid, List, ListItem, ListItemAvatar, ListItemButton, ListItemText } from '@mui/material';
+import { Avatar, Grid, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import GroupIcon from '@mui/icons-material/Group';
 
 export default function Footer() {
     return <>
@@ -12,7 +14,7 @@ export default function Footer() {
                         <ListItem>
                             <ListItemAvatar>
                                 <Avatar>
-                                    Instituição
+                                    <VideogameAssetIcon />
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary="Photos" />
@@ -20,7 +22,7 @@ export default function Footer() {
                         <ListItem>
                             <ListItemAvatar>
                                 <Avatar>
-                                    Parceria
+                                    <GroupIcon />
                                 </Avatar>
                             </ListItemAvatar>
                             <ListItemText primary="Work" />
@@ -45,13 +47,7 @@ export default function Footer() {
                     <List sx={{ width: '100%', height: "100%", bgcolor: 'background.paper' }}>
                         <h4>Contato</h4>
                         <ListItem>
-                            Teste
-                        </ListItem>
-                        <ListItem>
-                            Teste
-                        </ListItem>
-                        <ListItem>
-                            Teste
+                            stormyweboficial@gmail.com
                         </ListItem>
                     </List>
                 </Grid>
