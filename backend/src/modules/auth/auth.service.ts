@@ -7,16 +7,17 @@ export default class authService {
 
     static async postOne(name: string, password: string) {
         const results = await connection.query(`SELECT * FROM user WHERE USERNAME = '${name}';`)
-        try {
-            if(results === []) {
-                return (404);
-            }
 
+        if(results === []) {
+            return (404);
+        }
+        
+        try {
             await bcrypt.compare(password, results.password, (result: Boolean) => {
                 if(result === true) {
-                    return (500);
+                    return {"resultado": result};
                 } else {
-                    return (404);
+                    return {"resultado": result};
                 }
             });
         } catch(err: any) {
