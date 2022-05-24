@@ -1,4 +1,6 @@
-import { HTTP_STATUS } from "modules/utils/types";
+import { HTTP_STATUS } from "../utils/types/index";
+import * as RESPONSE from '../utils/types/index';
+import authService from './auth.service';
 import express from 'express';
 
 /**
@@ -6,5 +8,8 @@ import express from 'express';
  * @param {import("express").Response} res 
  */
  export async function login(req: express.Request, res: express.Response) {
-    res.status(HTTP_STATUS.OK).json(req);
+    let nome = req.body.username;
+    let senha = req.body.password;
+    const results = await authService.postOne(nome, senha);
+    return res.status(RESPONSE.HTTP_STATUS.OK).send(results)
 }
