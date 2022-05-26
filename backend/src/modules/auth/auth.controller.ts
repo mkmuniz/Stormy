@@ -1,10 +1,13 @@
-import { HTTP_STATUS } from "modules/utils/types";
+import { HTTP_STATUS } from "../utils/types/index";
+import * as RESPONSE from '../utils/types/index';
+import authService from './auth.service';
 import express from 'express';
+import passport from "passport";
 
 /**
  * @param {import("express").Request} req 
  * @param {import("express").Response} res 
  */
  export async function login(req: express.Request, res: express.Response) {
-    res.status(HTTP_STATUS.OK).json(req);
+    return res.status(RESPONSE.HTTP_STATUS.OK).send("Logado com sucesso!");
 }

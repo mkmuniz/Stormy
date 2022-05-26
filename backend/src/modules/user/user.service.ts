@@ -22,6 +22,15 @@ export default class userService {
         }
     }
 
+    static async findOne(username: string) {
+        const results = await connection.query(`SELECT * FROM user WHERE USERNAME = '${username}';`)
+        try {
+            return results[0];
+        } catch(err: any) {
+            return console.log(err as Error);
+        }
+    }
+
 
     static async postOne(body: any) {
         const id = randomUUID();

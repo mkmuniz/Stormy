@@ -13,3 +13,8 @@ export const ERRO_MESSAGE = {
     NOT_FOUND: "Not NOT_FOUND",
     INTERNAL_SERVER_ERROR: "Internal Problem"
 }
+
+export const TOKEN_ERROR = {
+    NOT_FOUND: "Not NOT_FOUND",
+    INTERNAL_SERVER_ERROR: "Internal Problem"
+}

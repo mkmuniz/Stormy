@@ -1,8 +1,8 @@
-import { get } from './request';
+import { get, post } from './request';
 
-export async function fazerLogin() {
+export async function fazerLogin(body: Object) {
     try {
-        const dados = get('/usuario')
+        const dados = post('/login', body)
         return { ...dados };
     } catch(err) {
         return err

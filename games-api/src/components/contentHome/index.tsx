@@ -4,7 +4,7 @@ import { Container } from "@mui/material";
 export default function HomeContent() {
     return <>
         <Container sx={{ m: 0, p: 0, width: "100%", bgcolor: 'primary.main' }}>
-            tertew
+            affsafds
         </Container>
     </>
 }
