@@ -16,7 +16,9 @@ const localStrategy = new LocalStrategy(
         if (senhas === false) {
             return done(null, false)
         }
-        return done(null, { access_token: JwtService.gerarToken(user) })
+        
+        delete user[0].password;
+        return done(null, { "access_token": JwtService.gerarToken(user[0]) })
     })
 
 passport.use(localStrategy)
