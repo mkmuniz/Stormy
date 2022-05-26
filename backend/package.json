@@ -54,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/passport-local": "^1.0.34"
   }
 }
