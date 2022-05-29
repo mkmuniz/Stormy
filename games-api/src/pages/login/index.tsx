@@ -1,6 +1,6 @@
 import React from 'react';
 import Container from '@mui/material/Container';
-import { Button, FormControl, InputLabel, Grid, Link } from '@mui/material';
+import { Button, FormControl, InputLabel, Grid, Link, TextField } from '@mui/material';
 import { State } from './interface';
 import Box, { BoxProps } from '@mui/material/Box';
 import { InputAdornment } from '@mui/material';
@@ -9,8 +9,11 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import { IconButton } from '@mui/material';
 import './index.css';
+import { fazerLogin } from '../../api/auth';
 
 export default function Login() {
+    const [username, setUsername] = React.useState("");
+    const [password, setPassword] = React.useState("");
     const [values, setValues] = React.useState<State>({
       amount: '',
       password: '',
@@ -35,9 +38,19 @@ export default function Login() {
       event.preventDefault();
     };
 
-    const doLogin = (e: { preventDefault: () => void; }) => {
+    const onUsernameChange = (e: any) => {
+      setUsername(e.target.value);
+      console.log(username);
+    }
+
+    const onPasswordChange = (e: any) => {
+      setPassword(e.target.value);
+      console.log(password);
+    }
+
+    const doLogin = async (e: { preventDefault: () => void; }) => {
       e.preventDefault();
-      console.log("Logged sucessfully!")
+      await fazerLogin({ "username": username, "password": password})
     }
 
     const styles = {
@@ -58,35 +71,13 @@ export default function Login() {
     <Box justifyContent="center" alignItems="center">
           <FormControl onSubmit={doLogin}>
           <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              label="Text"
-            />
+            <TextField onChange={onUsernameChange} value={username} placeholder="Username">
+            </TextField>
           </FormControl>
           <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={values.showPassword ? 'text' : 'password'}
-            value={values.password}
-            onChange={handleChange('password')}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
+          <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Password</TextField>
             <Link href="/forgotpassword" underline="none" sx={{ mt: 5 }}>Did you forget password?</Link>
-            <Link href="/user/signup" underline="none" sx={{ mb: 5 }}>Dont have an account?</Link>
+            <Link href="/signup" underline="none" sx={{ mb: 5 }}>Dont have an account?</Link>
         </FormControl>
             <Box textAlign="center" sx={{ mb: 3 }}>
               <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
