@@ -1,89 +1,71 @@
 import React from 'react';
-import Container from '@mui/material/Container';
 import { Button, FormControl, InputLabel, Grid, Link, TextField } from '@mui/material';
 import { State } from './interface';
 import Box, { BoxProps } from '@mui/material/Box';
-import { InputAdornment } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import { IconButton } from '@mui/material';
 import './index.css';
 import { fazerLogin } from '../../api/auth';
 
 export default function Login() {
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [values, setValues] = React.useState<State>({
-      amount: '',
-      password: '',
-      weight: '',
-      weightRange: '',
-      showPassword: false,
-    });
+  const [username, setUsername] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [values, setValues] = React.useState<State>({
+    amount: '',
+    password: '',
+    weight: '',
+    weightRange: '',
+    showPassword: false,
+  });
 
-    const handleChange =
+  const handleChange =
     (prop: keyof State) => (event: React.ChangeEvent<HTMLInputElement>) => {
       setValues({ ...values, [prop]: event.target.value });
     };
 
-    const handleClickShowPassword = () => {
+  const handleClickShowPassword = () => {
     setValues({
-        ...values,
-        showPassword: !values.showPassword,
-      });
-    };
+      ...values,
+      showPassword: !values.showPassword,
+    });
+  };
 
-    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-      event.preventDefault();
-    };
+  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+  };
 
-    const onUsernameChange = (e: any) => {
-      setUsername(e.target.value);
-      console.log(username);
-    }
+  const onUsernameChange = (e: any) => {
+    setUsername(e.target.value);
+    console.log(username);
+  }
 
-    const onPasswordChange = (e: any) => {
-      setPassword(e.target.value);
-      console.log(password);
-    }
+  const onPasswordChange = (e: any) => {
+    setPassword(e.target.value);
+    console.log(password);
+  }
 
-    const doLogin = async (e: { preventDefault: () => void; }) => {
-      e.preventDefault();
-      await fazerLogin({ "username": username, "password": password})
-    }
+  const doLogin = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    await fazerLogin({ "username": username, "password": password })
+  }
 
-    const styles = {
-      container: {
-        display: 'flex',
-        alignItems: 'center',
-        height: '100vh',
-        background: 'linear-gradient(45deg, #aa6775 30%, #984355 90%)' // Works
-      },
-    
-      child: {
-        backgroundColor: 'yellow' // Does nothing
-      }
-    };
-    
-    return<>
-    <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="10%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
-    <Box justifyContent="center" alignItems="center">
-          <FormControl onSubmit={doLogin}>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
+  return <>
+    <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="#F1F1F1" width="70%" margin="auto" marginTop="5%" height="100%" minHeight="500px" borderRadius="2%" mx="auto">
+      <h1>Welcome!</h1>
+      <Box justifyContent="center" alignItems="center">
+        <FormControl onSubmit={doLogin}>
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
             <TextField onChange={onUsernameChange} value={username} placeholder="Username">
             </TextField>
           </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-          <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Password</TextField>
-            <Link href="/forgotpassword" underline="none" sx={{ mt: 5 }}>Did you forget password?</Link>
-            <Link href="/signup" underline="none" sx={{ mb: 5 }}>Dont have an account?</Link>
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+            <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Password</TextField>
+          </FormControl>
+          <Link href="/forgotpassword" underline="none" sx={{ mt: 5 }}>Did you forget password?</Link>
+          <Link href="/signup" underline="none" sx={{ mb: 5 }}>Dont have an account?</Link>
+          <Box textAlign="center" sx={{ mb: 3 }}>
+            <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
+          </Box>
         </FormControl>
-            <Box textAlign="center" sx={{ mb: 3 }}>
-              <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
-            </Box>
-        </FormControl>
-        </Box>
+      </Box>
     </Grid>
-    </>
+  </>
 }

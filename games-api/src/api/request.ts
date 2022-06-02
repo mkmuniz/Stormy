@@ -1,5 +1,15 @@
 import api from './request_config';
+import { buscarCookie } from '../context/cookie';
+import { COOKIE_TYPES } from '../utils/types';
 
+
+export const setHeaderAuth = () => {
+    const userCookie = buscarCookie(COOKIE_TYPES.USUARIO);
+    const authToken = `Bearer ${userCookie}`;
+    api.defaults.headers.common.Authorization = authToken;
+}
+
+setHeaderAuth();
 export const get = async (link: string) => {
     return api.get(link)
 }

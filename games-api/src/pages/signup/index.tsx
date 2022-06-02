@@ -1,16 +1,15 @@
 import React from 'react';
-import Container from '@mui/material/Container';
-import { Button, FormControl, InputLabel, Grid, Link } from '@mui/material';
+import { Button, FormControl, InputLabel, Grid, Link, TextField } from '@mui/material';
 import { State } from './interface';
-import Box, { BoxProps } from '@mui/material/Box';
-import { InputAdornment } from '@mui/material';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
-import { IconButton } from '@mui/material';
 import './index.css';
 
 export default function Login() {
+  const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const [values, setValues] = React.useState<State>({
     amount: '',
     password: '',
@@ -31,93 +30,48 @@ export default function Login() {
     });
   };
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  const doLogin = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    console.log("Logged sucessfully!")
+  const onUsernameChange = (e: any) => {
+    setUsername(e.target.value);
+    console.log(username);
   }
 
-  const styles = {
-    container: {
-      display: 'flex',
-      alignItems: 'center',
-      height: '100vh',
-      background: 'linear-gradient(45deg, #aa6775 30%, #984355 90%)' // Works
-    },
+  const onEmailChange = (e: any) => {
+    setEmail(e.target.value);
+    console.log(email);
+  }
 
-    child: {
-      backgroundColor: 'yellow' // Does nothing
-    }
-  };
+  const onPasswordChange = (e: any) => {
+    setPassword(e.target.value);
+    console.log(password);
+  }
+
+  const doRegister = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+  }
 
   return <>
     <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="10%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
+      <h1>Welcome!</h1>
       <Box justifyContent="center" alignItems="center">
-        <FormControl onSubmit={doLogin}>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Username</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              label="Text"
-            />
+        <FormControl onSubmit={doRegister}>
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+            <TextField onChange={onUsernameChange} value={username} placeholder="Username">
+            </TextField>
           </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">E-mail</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              label="Text"
-            />
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+            <TextField onChange={onEmailChange} value={email} placeholder="E-mail">
+            </TextField>
           </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-            <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={values.showPassword ? 'text' : 'password'}
-              value={values.password}
-              onChange={handleChange('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+            <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Password</TextField>
           </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: 'white', borderRadius: 1 }} variant="outlined">
-            <OutlinedInput
-              id="outlined-adornment-password"
-              type={values.showPassword ? 'text' : 'password'}
-              value={values.password}
-              onChange={handleChange('password')}
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={handleClickShowPassword}
-                    onMouseDown={handleMouseDownPassword}
-                    edge="end"
-                  >
-                    {values.showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                  </IconButton>
-                </InputAdornment>
-              }
-              label="Password"
-            />
+          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+            <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Password</TextField>
           </FormControl>
           <Link href="/forgotpassword" underline="none" sx={{ mt: 5 }}>Did you forget password?</Link>
-          <Link href="/user/login" underline="none" sx={{ mb: 5 }}>Do you have an account?</Link>
+          <Link href="/login" underline="none" sx={{ mb: 5 }}>Do you have an account?</Link>
           <Box textAlign="center" sx={{ mb: 3 }}>
-            <Button variant="contained" color="primary" onClick={doLogin}> Login</Button>
+            <Button variant="contained" color="primary" type="submit">Register</Button>
           </Box>
         </FormControl>
       </Box>
