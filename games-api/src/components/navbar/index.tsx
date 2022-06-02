@@ -11,6 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
+import { purple } from '@mui/material/colors';
 
 export default function NavBar() {
   const [auth, setAuth] = React.useState(true);
@@ -29,7 +30,7 @@ export default function NavBar() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, bgColor: }}>
+    <Box sx={{ flexGrow: 1, bgColor: purple}}>
       <FormGroup>
         <FormControlLabel
           control={

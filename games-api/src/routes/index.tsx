@@ -9,8 +9,8 @@ export default function Rotas () {
         <Router>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/user/login" element={<Login />} />
-                <Route path="/user/signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
             </Routes>
         </Router>
     );    
