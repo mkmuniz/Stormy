@@ -9,7 +9,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-const URL = process.env.MONGO_URL;
+const URL:any = process.env.MONGO_URL;
 mongoose.connect(URL)
     .catch(err => {
         throw err
