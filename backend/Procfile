@@ -1,1 +1,2 @@
-web: ls
+web: cd ./backend
+web: npm start
