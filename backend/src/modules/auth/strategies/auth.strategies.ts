@@ -8,17 +8,22 @@ const localStrategy = new LocalStrategy(
     async (username: string, password: string, done: any) => {
         let user: any = await userService.getUser(username);
 
-        let senhas = await JwtService.compararSenhas(password, user[0].password);
+        try {
+            let senhas = await JwtService.compararSenhas(password, user[0].password);
 
-        if (user === null) {
-            return done("Erro, usuário inválido")
+            if (user === null) {
+                return done("Erro, usuário inválido")
+            }
+            if (senhas === false) {
+                return done(null, false)
+            }
+
+            delete user[0].password;
+
+            return done(null, { "access_token": JwtService.gerarToken(user[0]) })
+        } catch (err) {
+            return console.log(err as Error);
         }
-        if (senhas === false) {
-            return done(null, false)
-        }
-        
-        delete user[0].password;
-        return done(null, { "access_token": JwtService.gerarToken(user[0]) })
     })
 
 passport.use(localStrategy)

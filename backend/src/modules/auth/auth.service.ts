@@ -20,7 +20,7 @@ export default class authService {
                 }
             });
         } catch(err: any) {
-            return console.log(err as Error);
+            return undefined;
         }
     }
 

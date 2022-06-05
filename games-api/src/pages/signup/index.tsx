@@ -88,7 +88,7 @@ export default function SignUp() {
       <Card sx={{ color: 'error.main', maxWidth: 400, maxHeght: 250 }}>
         <h4 id="error-message"></h4>
       </Card>
-      <Card sx={{ maxWidth: 400, maxHeght: 250 }}>
+      <Card sx={{ maxWidth: 400 }}>
       <h1>Bem-Vindo!</h1>
       <Box justifyContent="center" alignItems="center">
         <FormControl onSubmit={doRegister}>
