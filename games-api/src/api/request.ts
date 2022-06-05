@@ -1,22 +1,63 @@
 import api from './request_config';
+import { buscarCookie, limparCookies } from '../context/cookie';
+import { COOKIE_TYPES, ERRO_TYPES } from '../utils/types';
+
+
+export const setHeaderAuth = () => {
+    const userCookie = buscarCookie(COOKIE_TYPES.USUARIO);
+    const authToken = `Bearer ${userCookie}`;
+    api.defaults.headers.common.Authorization = authToken;
+}
+
+setHeaderAuth();
+
+/**
+ * @param {Promise<import('axios').AxiosResponse<any>>} requisicao 
+ */
+ const tratarRequisicao = async (requisicao: any) => {
+    setHeaderAuth()
+    return requisicao.then((respostaHttp: any) => {
+        if (respostaHttp.status === ERRO_TYPES.JWT_NAO_AUTENTICADO) {
+            limparCookies()
+        }
+        return requisicao;
+    })
+}
 
 export const get = async (link: string) => {
-    return api.get(link)
+    return tratarRequisicao(api.get(link)).then((res) => {
+        return res.data
+    })
 }
+
+export const getUsername = async (link: string, username: any) => {
+    return tratarRequisicao(api.get(link, username)).then((res) => {
+        return res.data
+    })
+}
+
 export const post = async (link: string, body: Object) => {
-    return api.post(link, body)
+    return tratarRequisicao(api.post(link, body));
 }
 
 export const postAuth = async (link: string, username: string, password: any) => {
-    return api.post(link, username, password)
+    return tratarRequisicao(api.post(link, username, password)).then((res) => {
+        return res.data
+    })
 }
 
 export const put = async (link: string, body: Object) => {
-    return api.put(link, body)
+    return tratarRequisicao(api.put(link, body)).then((res) => {
+        return res.data
+    })
 }
 export const patch = async (link: string, body: Object) => {
-    return api.patch(link, body)
+    return tratarRequisicao(api.patch(link, body)).then((res) => {
+        return res.data
+    })
 }
 export const del = async (link: string) => {
-    return api.delete(link)
+    return tratarRequisicao(api.delete(link)).then((res) => {
+        return res.data
+    })
 }

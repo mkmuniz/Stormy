@@ -12,7 +12,7 @@ export default class TokenService {
         return (password);
     }
 
-    static gerarToken(user: Object) {
+    static gerarToken(user: any) {
         let token;
 
         try {
@@ -20,7 +20,7 @@ export default class TokenService {
                 throw ERROR_STATUS.TOKEN_ERROR.NOT_FOUND;
             }
 
-            token = jwt.sign(user, 'teste', { 'expiresIn': '1d' })
+            token = jwt.sign(user.toJSON(), 'teste', { expiresIn: 600000 })
 
             return token;
 

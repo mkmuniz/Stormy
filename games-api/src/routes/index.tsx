@@ -1,17 +1,18 @@
 import React from 'react';
-import Login from '../pages/login/index';
-import SignUp from '../pages/signup/index';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from '../pages/home/index';
+import { BrowserRouter as Router} from 'react-router-dom';
+import RotasPrivadas from './private';
+import { RotasPublicas } from './public';
+import { AuthContext } from '../context/Auth';
+import { useContext } from 'react';
 
 export default function Rotas () {
+    const authContext = useContext(AuthContext);
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-            </Routes>
+        <Router basename={process.env.PUBLIC_URL}>
+            {(authContext.username && !authContext.username)
+            ?
+            <RotasPrivadas /> :
+            <RotasPublicas />}
         </Router>
     );    
 }

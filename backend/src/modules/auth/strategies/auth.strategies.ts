@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local');
 
 const localStrategy = new LocalStrategy(
     async (username: string, password: string, done: any) => {
-        let user = await userService.findOne(username);
+        let user: any = await userService.getUser(username);
 
         let senhas = await JwtService.compararSenhas(password, user[0].password);
 
