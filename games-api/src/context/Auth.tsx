@@ -1,7 +1,6 @@
 import { decode } from 'jsonwebtoken';
-import React, { useCallback, useMemo, useReducer } from 'react';
+import React, { Component, useCallback, useMemo, useReducer } from 'react';
 import { setHeaderAuth } from '../api/request';
-import Rotas from '../routes';
 import { validarToken } from '../utils/jwt';
 import { LOGIN_TYPES, ERRO_TYPES, COOKIE_TYPES } from '../utils/types';
 import { buscarCookie, limparCookies } from './cookie';
@@ -43,7 +42,7 @@ function authReducer(state: any, action: any) {
     }
 }
 
-export function AuthProvider(children: any) {
+export const AuthProvider: React.FC = ({ children }: any) => {
 
     /* states */
     const [dados, dispatch] = useReducer(authReducer, valorInicial);
@@ -83,10 +82,11 @@ export function AuthProvider(children: any) {
 
             return resolverTokenInvalido(tokenValidado);
         }
+        
         return valorInicial;
     }, [dados, resolverTokenInvalido]);
     return ( 
-    <AuthContext.Provider value={{ ...dadosCookie, dispatch }}>
+    <AuthContext.Provider value={{ ...dados, dispatch }}>
         {children}
     </AuthContext.Provider>
     );

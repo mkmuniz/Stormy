@@ -14,7 +14,7 @@ export const buscarCookie = (nomeCookie: any) => {
     return cookie.get(nomeCookie);
 }
 
-export const criarCookie = (nomeCookie: any, dados: any) => {
+export const criarCookie = (nomeCookie: string, dados: any) => {
     const cookie: any = new Cookies();
     return cookie.set(nomeCookie, dados, localStorage.setItem(cookie, 'token'));
 }

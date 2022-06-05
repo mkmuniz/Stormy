@@ -25,8 +25,14 @@ export function RotaRestrita({ component: Component, ...rest }: any) {
             pathname: "/",
         }} />
     }
-    return <Route {...rest} render={(props: JSX.IntrinsicAttributes) => (
-        <Component {...props} />
-    )} />
+
+    return (
+        <Route
+          {...rest}
+          render={(props: JSX.IntrinsicAttributes) => {
+            return <Component {...props} />
+          }}
+        ></Route>
+      )
 
 }

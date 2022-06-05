@@ -6,6 +6,8 @@ import { ERRO_TYPES, COOKIE_TYPES, LOGIN_TYPES } from '../../utils/types';
 import Box, { BoxProps } from '@mui/material/Box';
 import './index.css';
 import { fazerLogin } from '../../api/auth';
+import { useNavigate } from 'react-router-dom';
+import { decode } from 'jsonwebtoken';
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
@@ -17,6 +19,8 @@ export default function Login() {
   const onPasswordChange = (e: any) => {
     setPassword(e.target.value);
   }
+
+  const history = useNavigate();
 
   const contexto: any = useContext(AuthContext);
 
@@ -49,9 +53,12 @@ export default function Login() {
 
     criarCookie(COOKIE_TYPES.USUARIO, token);
 
+    
     contexto.dispatch({ type: LOGIN_TYPES.OK, dados: { token } })
 
     localStorage.setItem('token', token);
+
+    history("/home");
 
   }
 
