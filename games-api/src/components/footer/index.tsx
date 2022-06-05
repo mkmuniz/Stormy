@@ -6,10 +6,10 @@ import GroupIcon from '@mui/icons-material/Group';
 
 export default function Footer() {
     return <>
-        <BottomNavigation sx={{ textAlign: 'center', color: 'secondary.main' }}>
-            <Grid container >
+        <BottomNavigation sx={{ textAlign: 'center', color: "#F5F5F5", bgcolor: '#D100F3' }}>
+            <Grid container sx={{ bgcolor: '#D100F3' }} >
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', height: '100%', bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: '100%' }}>
                         <h4>Apresentação</h4>
                         <ListItem>
                             <ListItemAvatar>
@@ -30,7 +30,7 @@ export default function Footer() {
                     </List>
                 </Grid>
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', height: "100%", bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: "100%" }}>
                         <h4>Suporte</h4>
                         <ListItem>
                             Teste
@@ -44,7 +44,7 @@ export default function Footer() {
                     </List>
                 </Grid>
                 <Grid item xs={4}>
-                    <List sx={{ width: '100%', height: "100%", bgcolor: 'background.paper' }}>
+                    <List sx={{ width: '100%', height: "100%" }}>
                         <h4>Contato</h4>
                         <ListItem>
                             stormyweboficial@gmail.com
