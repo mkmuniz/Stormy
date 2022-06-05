@@ -9,5 +9,5 @@ import passport from "passport";
  * @param {import("express").Response} res 
  */
  export async function login(req: express.Request, res: express.Response) {
-    return res.status(RESPONSE.HTTP_STATUS.OK).send("Logado com sucesso!");
+    return res.status(RESPONSE.HTTP_STATUS.OK).send(req.user);
 }

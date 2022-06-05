@@ -1,6 +1,5 @@
-import { execFileSync } from "child_process";
+import mongoose from 'mongoose';
 
-const mysql = require('mysql2/promise');
 const cors = require('cors');
 const express = require('express');
 const app = express();
@@ -10,10 +9,10 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
-export const connection = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '12345',
-  database: 'stormydb',
-  connectionLimit: '50'
-})
+const URL = "mongodb+srv://stormy:345123@cluster0.2cdtahj.mongodb.net/?retryWrites=true&w=majority";
+mongoose.connect(URL)
+    .catch(err => {
+        throw err
+    });
+
+export default mongoose;

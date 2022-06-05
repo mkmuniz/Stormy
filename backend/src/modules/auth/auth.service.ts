@@ -1,12 +1,11 @@
-import { connection } from '../_database/index'
-import { randomUUID } from 'crypto';
+import { User } from 'modules/user/entities/user.entities';
 const bcrypt = require('bcrypt');
 
 
 export default class authService {
 
     static async postOne(name: string, password: string) {
-        const results = await connection.query(`SELECT * FROM user WHERE USERNAME = '${name}';`)
+        const results = await User.findOne( { "username": name })
 
         if(results === []) {
             return (404);
