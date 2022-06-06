@@ -25,16 +25,24 @@ export default function Game() {
   }, [])
 
   const ContentGame = () => {
-    const [open, setOpen] = React.useState(false);
     const [comentario, setComentario] = React.useState("");
-    const [nota, setNota] = React.useState("Escolha uma nota de 1 a 10!");
+    const [nota, setNota] = React.useState(null);
     const [openTwo, setOpenTwo] = React.useState(false);
     const handleOpenTwo = () => setOpenTwo(true);
     const handleCloseTwo = () => setOpenTwo(false);
 
     const enviarComent = async () => {
-      await enviarComentario(id, { "autor": token.username, "coment": comentario, "nota": nota })
-      location.reload();
+      const element: any  = document.getElementById("message");
+      if(nota === null) {
+        const returnMessage = element.innerHTML = "Erro! Insira pelo menos uma nota!"
+        return returnMessage;
+      } else if (nota === null && comentario == "") {
+        const returnMessage = element.innerHTML = "Erro! Insira pelo menos uma nota e possivelmente, um comentário!"
+        return returnMessage;
+      } else {
+        const returnMessage = element.innerHTML = "Comentário enviado!"
+        return await enviarComentario(id, { "autor": token.username, "coment": comentario, "nota": nota }) && returnMessage && location.reload();
+      }
     }
 
     const onChangeComent = (e: any) => {
@@ -93,9 +101,9 @@ export default function Game() {
                         id="outlined-required"
                         onChange={onChangeNota}
                         label="Nota"
-                        defaultValue={nota}
                         sx={{ m: 2, width: "80%" }}
                       />
+                      <h3 id="message"></h3>
                       <Button onClick={enviarComent}>Enviar</Button>
 
                     </Typography>

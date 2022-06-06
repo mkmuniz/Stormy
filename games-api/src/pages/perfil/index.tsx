@@ -27,7 +27,6 @@ export default function Perfil() {
         if(name === null) {
             const returnMessage = element.innerHTML = "Dados enviados com sucesso!";
             return await mudarUsuario(token._id, {"email": email}) && returnMessage && history('/logout');
-            history('/logout')
         } else if(email === null) {
             const returnMessage = element.innerHTML = "Dados enviados com sucesso!";
             return await mudarUsuario(token._id, {"username": name}) && returnMessage && history('/logout');
