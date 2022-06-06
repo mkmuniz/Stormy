@@ -2,6 +2,7 @@ import React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import { Avatar, Grid, List, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
+import { Link } from 'react-router-dom';
 import GroupIcon from '@mui/icons-material/Group';
 
 export default function Footer() {
@@ -17,7 +18,7 @@ export default function Footer() {
                                     <VideogameAssetIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary="Photos" />
+                            <ListItemText primary="Site especializado em avaliações e pesquisa de jogos." />
                         </ListItem>
                         <ListItem>
                             <ListItemAvatar>
@@ -25,21 +26,15 @@ export default function Footer() {
                                     <GroupIcon />
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary="Work" />
+                            <ListItemText primary="Grupo de alunos da Mackenzie." />
                         </ListItem>
                     </List>
                 </Grid>
                 <Grid item xs={4}>
                     <List sx={{ width: '100%', height: "100%" }}>
-                        <h4>Suporte</h4>
+                        <h4>Parceria</h4>
                         <ListItem>
-                            Teste
-                        </ListItem>
-                        <ListItem>
-                            Teste
-                        </ListItem>
-                        <ListItem>
-                            Teste
+                            <img src="https://www.dhla.org/wp-content/uploads/2021/11/logo-mackenzie-png-2.png" style={{ width: "75%" }} />
                         </ListItem>
                     </List>
                 </Grid>

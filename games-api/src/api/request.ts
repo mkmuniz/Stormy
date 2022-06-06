@@ -25,9 +25,7 @@ setHeaderAuth();
 }
 
 export const get = async (link: string) => {
-    return tratarRequisicao(api.get(link)).then((res) => {
-        return res.data
-    })
+    return tratarRequisicao(api.get(link));
 }
 
 export const getUsername = async (link: string, username: any) => {
@@ -42,6 +40,18 @@ export const post = async (link: string, body: Object) => {
 
 export const postAuth = async (link: string, username: string, password: any) => {
     return tratarRequisicao(api.post(link, username, password)).then((res) => {
+        return res.data
+    })
+}
+
+export const postMessage = async (link: string, body: Object) => {
+    return tratarRequisicao(api.post(link, body)).then((res) => {
+        return res.data
+    })
+}
+
+export const postResposta = async (link: string, body: Object) => {
+    return tratarRequisicao(api.post(link, body)).then((res) => {
         return res.data
     })
 }

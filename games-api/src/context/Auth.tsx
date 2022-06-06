@@ -86,7 +86,7 @@ export const AuthProvider: React.FC = ({ children }: any) => {
         return valorInicial;
     }, [dados, resolverTokenInvalido]);
     return ( 
-    <AuthContext.Provider value={{ ...dados, dispatch }}>
+    <AuthContext.Provider value={{ ...dadosCookie, dispatch }}>
         {children}
     </AuthContext.Provider>
     );

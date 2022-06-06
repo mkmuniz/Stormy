@@ -4,32 +4,22 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import jwtDecode from 'jwt-decode';
+import { Link } from 'react-router-dom';
 
 export default function ButtonAppBar() {
   const getToken: any = localStorage.getItem('token');
-  const token = jwtDecode(getToken);
+  const token: any = jwtDecode(getToken);
 
-  console.log(token);
   return (
-    <Box sx={{ flexGrow: 1, color: "#D100F3" }}>
-      <AppBar position="static" sx={{ bgcolor: "#D100F3" }}>
+    <Box sx={{ flexGrow: 1, color: "#D100F3", height: "20%" }}>
+      <AppBar position="static" sx={{ bgcolor: "#D100F3", height: "20%" }}>
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Stormy
+          <Link style={{ color: "white", textDecoration: "none" }} to="/home">Stormy</Link>
           </Typography>
-          <Button color="inherit">Bem-Vindo!</Button>
+        <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/perfil">Bem-Vindo! {token.username}</Link></Button>
+        <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/logout">SAIR</Link></Button>
         </Toolbar>
       </AppBar>
     </Box>

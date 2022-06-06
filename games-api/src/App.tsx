@@ -9,10 +9,6 @@ import { AuthProvider } from './context/Auth';
 import { Rotas } from './routes/index';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthContext } from './context/Auth';
-import RotasPrivadas from './routes/private';
-import { RotasPublicas } from './routes/public';
-import Login from './pages/login';
-import { Route } from 'react-router';
 
 const client = new QueryClient();
 

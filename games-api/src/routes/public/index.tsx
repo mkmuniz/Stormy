@@ -15,7 +15,6 @@ export function RotasPublicas() {
     <Route path="/signup" element={<SignUp />} />
 
     <Route path="*" element={<ErroPage />} />
-
   </Routes>;
 }
 
