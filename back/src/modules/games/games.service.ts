@@ -7,7 +7,7 @@ export default class gamesService {
         try {
             return await Games.find();
         } catch(err: any) {
-            return console.log(err as Error);
+            throw new Error("Erro on the try to search all the games");
         }
     }
     
@@ -15,7 +15,7 @@ export default class gamesService {
         try {
             return await Games.findById(id);
         } catch(err: any) {
-            return console.log(err as Error);
+            throw new Error("Erro trying to search a game by id");
         }
     }
 
@@ -23,7 +23,7 @@ export default class gamesService {
         try {
             return await Games.create(body);
         } catch(err: any) {
-            return console.log(err as Error);
+            throw new Error("Erro when creating a new game object");
         }
     }
 
@@ -31,7 +31,7 @@ export default class gamesService {
         try {
             return await Games.findOneAndUpdate(id, {$push: { comentarios: [{ autor: body.autor, coment: body.coment, nota: body.nota }]}});
         } catch(err: any) {
-            return console.log(err as Error);
+            throw new Error(err);
         }
     }
 
