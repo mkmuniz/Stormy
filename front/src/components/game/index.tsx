@@ -102,7 +102,7 @@ export default function Game() {
                         sx={{ m: 2, width: "80%" }}
                       />
                       <h3 id="message"></h3>
-                      <Button onClick={enviarComent}>Enviar</Button>
+                      <Button variant="contained" onClick={enviarComent}>Enviar</Button>
 
                     </Typography>
                   </Card>

@@ -2,7 +2,6 @@ import routesIndex from './routes';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
-import bodyParser from 'body-parser';
 const cors = require('cors');
 const app = express();
 

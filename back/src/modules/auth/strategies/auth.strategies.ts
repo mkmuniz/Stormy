@@ -12,7 +12,7 @@ const localStrategy = new LocalStrategy(
             let senhas = await JwtService.compararSenhas(password, user[0].password);
 
             if (user === null) {
-                return done("Erro, usuário inválido")
+                return done(null, false)
             }
             if (senhas === false) {
                 return done(null, false)
