@@ -13,6 +13,11 @@ const gamesSchema = new mongoose.Schema({
         require: true,
     },
 
+    categoria: {
+        type: String,
+        require: true
+    },
+    
     imagem: {
         type: String,
     },
