@@ -48,7 +48,7 @@ export default function RotasPrivadas() {
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path='/logout' element={<Logout />} />
                 <Route path='/game/:id' element={<Game />} />
-                <Route path="*" element={() => (<ErroPage />)} />
+                <Route path="/" element={() => (<ErroPage />)} />
             </Routes>
         </SistemaProvider>
     );

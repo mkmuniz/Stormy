@@ -8,11 +8,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 export default function HomeContent() {
     const [dataGames, setData] = React.useState([]);
+    const [isLoaded, setLoaded] = React.useState(false);
     const imagemStyle: any = {
         width: "100%",
         height: "75vh"
     }
-    const history: any = useNavigate();
 
     const Item = styled(Paper)(({ theme }: any) => ({
         backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -22,12 +22,15 @@ export default function HomeContent() {
         color: theme.palette.text.secondary,
     }));
 
-    const getGames = async () => {
-        const games = await buscarJogos()
-        setData(games.data);
-    };
     useEffect(() => {
+        const getGames = async () => {
+            const games = await buscarJogos().then(res => {
+                setData(res.data)
+                setFoundGames(dataGames);
+            })
+        };
         getGames()
+        setLoaded(true);
     }, [])
 
     const [titulo, setTitulo] = useState('');
@@ -38,16 +41,10 @@ export default function HomeContent() {
     const filter = (e: any) => {
         const keyword = e.target.value;
 
-        if (keyword !== '') {
-            const results = dataGames.filter((game: any) => {
-                return game.titulo.toLowerCase().startsWith(keyword.toLowerCase());
-                // Use the toLowerCase() method to make it case-insensitive
-            });
-            setFoundGames(results);
-        } else {
-            setFoundGames(dataGames);
-            // If the text field is empty, show all users
-        }
+        const results = dataGames.filter((game: any) => {
+            return game.titulo.toLowerCase().startsWith(keyword.toLowerCase());
+        });
+        setFoundGames(results);
 
         setTitulo(keyword);
     };
@@ -55,7 +52,8 @@ export default function HomeContent() {
         <Box sx={{ m: 0, p: 0, width: "100%", height: "50%", bgcolor: '#000000' }}>
             <img style={imagemStyle} src="https://images4.alphacoders.com/100/thumb-1920-1005943.png" />
         </Box>
-        <Box sx={{ m: 0, p: 0, width: "100%", height: "100%", bgcolor: "#ffffff" }}>
+        <Box sx={{ m: 0, p: 0, width: "100%", height: "100%", bgcolor: "#ffffff", textAlign: "center" }}>
+            <h3>RECOMENDAÇÕES</h3>
             <Card sx={{ bgcolor: "#ffffff" }}>
                 <Typography textAlign="center">
                     <TextField fullWidth label="Pesquisar"
@@ -67,8 +65,10 @@ export default function HomeContent() {
                     />
                     <div className="user-list">
                         <Grid container justifyContent="center" spacing={{ mt: 5, xs: 5, md: 3, mx: 'auto' }} columns={{ ml: 2, xs: 4, m: 4, sm: 8, md: 12 }}>
-                            {foundGames && foundGames.length > 0 ? (
-                                foundGames.map((game: any) => (
+                            {isLoaded === true ? (
+                                foundGames.filter((game: any) => {
+                                    return game;
+                                }).map((game: any) => (
                                         <Item>
                                             <Card sx={{ maxWidth: 345, maxHeight: 300, mt: 3 }}>
                                                 <CardActionArea>
@@ -92,7 +92,7 @@ export default function HomeContent() {
                                         </Item>
                                 ))
                             ) : (
-                                <h1>Nada encontrado, pesquise por um item.</h1>
+                                <h1>Carregando...</h1>
                             )}
                         </Grid>
                     </div>
