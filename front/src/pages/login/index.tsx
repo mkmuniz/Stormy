@@ -7,7 +7,6 @@ import Box, { BoxProps } from '@mui/material/Box';
 import './index.css';
 import { fazerLogin } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
-import { decode } from 'jsonwebtoken';
 
 export default function Login() {
   const [username, setUsername] = React.useState("");
@@ -77,7 +76,7 @@ export default function Login() {
   }
 
   return <>
-    <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="2.5%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
+    <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="6.5%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
       <Box sx={{ color: 'error.main'}}>
         <h4 id="error-message"></h4>
       </Box>
@@ -85,15 +84,17 @@ export default function Login() {
       <Box justifyContent="center" alignItems="center">
         <FormControl onSubmit={onSubmit}>
           <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField onChange={onUsernameChange} value={username} placeholder="Nome de usuário">
+            <TextField onChange={onUsernameChange} value={username} placeholder="Username">
             </TextField>
           </FormControl>
           <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Senha</TextField>
+            <TextField placeholder="Password" onChange={onPasswordChange} value={password} type="password" >Senha</TextField>
           </FormControl>
           <Link href="/signup" underline="none" sx={{ mb: 5 }}>Não possui uma conta?</Link>
           <Box textAlign="center" sx={{ mb: 3 }}>
-            <Button variant="contained" color="primary" onClick={onSubmit}> Login</Button>
+            <Button variant="contained" color="primary" onClick={onSubmit}>
+              <strong>Entrar</strong>
+            </Button>
           </Box>
         </FormControl>
       </Box>

@@ -6,7 +6,9 @@ import NavBar from '../../components/navbar/index';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { useParams } from 'react-router';
 import { buscarUm, enviarComentario } from '../../api/games';
+import CommentIcon from '@mui/icons-material/Comment';
 import { Carregando } from '../carregando';
+
 export default function Game() {
   const [dataGames, setData] = useState<any>(null)
   const getToken: any = localStorage.getItem('token');
@@ -67,12 +69,15 @@ export default function Game() {
     return <>
       <Card sx={{ width: "80%", height: "75%", mt: 3 }}>
         <Typography textAlign="center">
-          <h2>{dataGames.titulo}</h2>
+          <h1>{dataGames.titulo}</h1>
           <img src={dataGames.imagem} style={{ maxHeight: "20%" }} />
+          <p><strong>Categoria</strong>: {dataGames.categoria}</p>
           <p>{dataGames.descricao}</p>
+        <h2>COMENTÁRIOS</h2>
         </Typography>
-        <h3>COMENTÁRIOS</h3>
-        <Button onClick={handleOpenTwo}>Clique para comentar</Button>
+        <Button sx={{ color: 'black' }}onClick={handleOpenTwo}>
+          <CommentIcon />
+        </Button>
         <Modal
           open={openTwo}
           onClose={handleCloseTwo}
@@ -103,7 +108,6 @@ export default function Game() {
                       />
                       <h3 id="message"></h3>
                       <Button variant="contained" onClick={enviarComent}>Enviar</Button>
-
                     </Typography>
                   </Card>
                 </Grid>

@@ -35,29 +35,29 @@ export default function SignUp() {
     const element: any = document.getElementById('error-message');
     e.preventDefault();
 
-    if(username === ""  || username === null) {
+    if (username === "" || username === null) {
       const returnMessage = element.innerHTML = "Erro, campos incompletos! tente novamente.";
       return returnMessage;
     }
-    if(password === ""  || password === null) {
+    if (password === "" || password === null) {
       const returnMessage = element.innerHTML = "Erro, campos incompletos! tente novamente.";
       return returnMessage;
     }
-    if(email === ""  || email === null) {
+    if (email === "" || email === null) {
       const returnMessage = element.innerHTML = "Erro, campos incompletos! tente novamente.";
       return returnMessage;
     }
-    if(password != passwordTwo) {
+    if (password != passwordTwo) {
       const returnMessage = element.innerHTML = "Erro, as senhas não coincidem! verifique novamente.";
       return returnMessage;
     }
     try {
-      const resultsTwo = await buscarUsuario({"username": username})
-      const resultsThree = await buscarUsuarioEmail({"email": email})
+      const resultsTwo = await buscarUsuario({ "username": username })
+      const resultsThree = await buscarUsuarioEmail({ "email": email })
       const stringArray = JSON.stringify(resultsTwo);
       const stringArrayTwo = JSON.stringify(resultsThree);
-      if(stringArray != '[]') {
-        if(stringArrayTwo != '[]') {
+      if (stringArray != '[]') {
+        if (stringArrayTwo != '[]') {
           const returnMessage = element.innerHTML = "Erro, o nome de usuário e email já está sendo utilizado!";
           return returnMessage;
         } else {
@@ -65,8 +65,8 @@ export default function SignUp() {
           return returnMessage;
         }
       }
-      if(stringArrayTwo != '[]') {
-        if(stringArray != '[]') {
+      if (stringArrayTwo != '[]') {
+        if (stringArray != '[]') {
           const returnMessage = element.innerHTML = "Erro, o nome de usuário e email já está sendo utilizado!";
           return returnMessage;
         } else {
@@ -84,35 +84,41 @@ export default function SignUp() {
   }
 
   return <>
-      <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="2.5%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
-      <Card sx={{ color: 'error.main', maxWidth: 400, maxHeght: 250 }}>
-        <h4 id="error-message"></h4>
-      </Card>
-      <Card sx={{ maxWidth: 400 }}>
-      <h1>Bem-Vindo!</h1>
-      <Box justifyContent="center" alignItems="center">
-        <FormControl onSubmit={doRegister}>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField onChange={onUsernameChange} value={username} placeholder="Nome de usuário">
-            </TextField>
-          </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField onChange={onEmailChange} value={email} placeholder="E-mail">
-            </TextField>
-          </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField placeholder="password" onChange={onPasswordChange} value={password} type="password" >Digite sua senha</TextField>
-          </FormControl>
-          <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
-            <TextField placeholder="password2" onChange={onPasswordChangeTwo} value={passwordTwo} type="password" >Digite novamente sua senha</TextField>
-          </FormControl>
-          <Link href="/login" underline="none" sx={{ mb: 5 }}>Você já tem uma conta? Clique aqui</Link>
-          <Box textAlign="center" sx={{ mb: 3 }}>
-            <Button variant="contained" color="primary" onClick={doRegister}>Registrar</Button>
+    <body className="background">
+    <Grid container direction="column" textAlign="center" justifyContent="center" bgcolor="white" width="30%" margin="auto" marginTop="2.5%" height="100%" minHeight="400px" borderRadius="2%" mx="auto">
+        <Card sx={{ color: 'error.main', maxWidth: 400, maxHeght: 250 }}>
+          <h4 id="error-message"></h4>
+        </Card>
+        <Card sx={{ maxWidth: 400 }}>
+          <h1>Bem-Vindo!</h1>
+          <Box justifyContent="center" alignItems="center">
+            <FormControl onSubmit={doRegister}>
+              <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+                <TextField onChange={onUsernameChange} value={username} placeholder="Username">
+                </TextField>
+              </FormControl>
+              <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+                <TextField onChange={onEmailChange} value={email} placeholder="E-mail">
+                </TextField>
+              </FormControl>
+              <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+                <TextField placeholder="Password" onChange={onPasswordChange} value={password} type="password" >Digite sua senha</TextField>
+              </FormControl>
+              <FormControl sx={{ m: 1, width: '25ch', bgcolor: '#E3E2E2', borderRadius: 1 }} variant="outlined">
+                <TextField placeholder="Confirm Password" onChange={onPasswordChangeTwo} value={passwordTwo} type="password" >Digite novamente sua senha</TextField>
+              </FormControl>
+              <Link href="/login" underline="none" sx={{ mb: 5 }}>Você já tem uma conta? Clique aqui</Link>
+              <Box textAlign="center" sx={{ mb: 3 }}>
+                <Button variant="contained" color="primary" onClick={doRegister}>
+                  <strong>
+                    Registrar
+                  </strong>
+                </Button>
+              </Box>
+            </FormControl>
           </Box>
-        </FormControl>
-      </Box>
-      </Card>
+        </Card>
       </Grid>
+    </body>
   </>
 }

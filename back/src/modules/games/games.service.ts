@@ -29,7 +29,7 @@ export default class gamesService {
 
     static async postComentario(id: String, body: any) {
         try {
-            return await Games.findOneAndUpdate(id, {$push: { comentarios: [{ autor: body.autor, coment: body.coment, nota: body.nota }]}});
+            return await Games.findByIdAndUpdate(id, {$push: { comentarios: [{ autor: body.autor, coment: body.coment, nota: body.nota }]}});
         } catch(err: any) {
             throw new Error(err);
         }

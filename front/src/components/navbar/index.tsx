@@ -16,7 +16,13 @@ export default function ButtonAppBar() {
       <AppBar position="static" sx={{ bgcolor: "#D100F3", height: "20%" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link style={{ color: "white", textDecoration: "none" }} to="/home"><strong>STORMY</strong></Link>
+          <Link style={{ color: "white", textDecoration: "none" }} to="/home">
+            <strong>
+            <i>
+              STORMY
+            </i>
+            </strong>
+          </Link>
           </Typography>
         <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/perfil">Bem-Vindo! {token.username}</Link></Button>
         <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/logout">SAIR</Link></Button>
