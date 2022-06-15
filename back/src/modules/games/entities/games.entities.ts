@@ -26,12 +26,12 @@ const gamesSchema = new mongoose.Schema({
         autor: String,
         coment: String,
         data: Date,
-        nota: Number,
+        nota: String,
         respostas: [{
             autor: String,
             coment: String,
             data: Date,
-            nota: Number
+            nota: String
         }]
     }],
 

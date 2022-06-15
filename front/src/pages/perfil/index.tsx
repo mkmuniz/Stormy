@@ -43,7 +43,7 @@ export default function Perfil() {
         <Box sx={{ m: 0, p: 0, width: "100%", height: "100%", bgcolor: "#ffffff" }}>
             <Grid container spacing={2} justifyContent="center" alignItems="center">
                 <Grid item xs={7} md={4}>
-                    <Card sx={{ maxWidth: 600, maxHeght: 600 }}>
+                    <Card sx={{ m: 5, maxWidth: 600, maxHeght: 600 }}>
                         <Typography align='center'>
                             <h2>Perfil</h2>
                             <TextField
@@ -63,7 +63,7 @@ export default function Perfil() {
                                 sx={{ m: 2 }}
                             />
                             <h4 id="message"></h4>
-                            <Button onClick={mudarPerfil}>Salvar alterações</Button>
+                            <Button sx={{ m:2 }} variant="contained" onClick={mudarPerfil}>Salvar alterações</Button>
                         </Typography>
                     </Card>
                 </Grid>

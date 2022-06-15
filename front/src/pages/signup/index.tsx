@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import './index.css';
 import { buscarUsuario, buscarUsuarioEmail, cadastrarUsuario } from '../../api/signup';
 import { useNavigate } from 'react-router';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
 
 export default function SignUp() {
   const [username, setUsername] = React.useState("");
@@ -113,6 +114,7 @@ export default function SignUp() {
                   <strong>
                     Registrar
                   </strong>
+                  <HowToRegIcon />
                 </Button>
               </Box>
             </FormControl>

@@ -5,7 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import jwtDecode from 'jwt-decode';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Link } from 'react-router-dom';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 export default function ButtonAppBar() {
   const getToken: any = localStorage.getItem('token');
@@ -24,8 +26,10 @@ export default function ButtonAppBar() {
             </strong>
           </Link>
           </Typography>
+        <AccountBoxIcon /> 
         <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/perfil">Bem-Vindo! {token.username}</Link></Button>
         <Button color="inherit"><Link style={{ color: "white", textDecoration: "none" }} to="/logout">SAIR</Link></Button>
+        <ExitToAppIcon />
         </Toolbar>
       </AppBar>
     </Box>

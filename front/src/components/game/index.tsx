@@ -26,18 +26,26 @@ export default function Game() {
 
   const ContentGame = () => {
     const [comentario, setComentario] = React.useState("");
-    const [nota, setNota] = React.useState(null);
+    const [nota, setNota]: any = React.useState(0);
     const [openTwo, setOpenTwo] = React.useState(false);
     const handleOpenTwo = () => setOpenTwo(true);
     const handleCloseTwo = () => setOpenTwo(false);
 
     const enviarComent = async () => {
       const element: any  = document.getElementById("message");
-      if(nota === null) {
+      const notaNum = parseInt(nota);
+      
+      if(notaNum === null) {
         const returnMessage = element.innerHTML = "Erro! Insira pelo menos uma nota!"
         return returnMessage;
-      } else if (nota === null && comentario == "") {
+      } else if (notaNum === null && comentario == "") {
         const returnMessage = element.innerHTML = "Erro! Insira pelo menos uma nota e possivelmente, um comentário!"
+        return returnMessage;
+      } else if (notaNum > 10 || notaNum < 0) {
+        const returnMessage = element.innerHTML = "Erro! A nota deve ser de 0 a 10!"
+        return returnMessage;
+      } else if (!notaNum) {
+        const returnMessage = element.innerHTML = "Erro! Nota inválida, digite um número de 0 a 10!"
         return returnMessage;
       } else {
         const returnMessage = element.innerHTML = "Comentário enviado!"
@@ -121,7 +129,7 @@ export default function Game() {
               <ul style={{ listStyle: "none" }}>
                 <AccountCircleRoundedIcon fontSize='large' />
                 <li>
-                  <h5>Nome: {comentario.autor}</h5>
+                  <h5>{comentario.autor}</h5>
                 </li>
                 <li>
                   <h5>Comentário: {comentario.coment}</h5>

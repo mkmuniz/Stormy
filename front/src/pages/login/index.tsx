@@ -1,11 +1,12 @@
 import React, { useState, useContext } from 'react';
-import { Button, FormControl, InputLabel, Grid, Link, TextField, Card } from '@mui/material';
+import { Button, FormControl, InputLabel, Grid, Link, TextField, Card, Typography } from '@mui/material';
 import { AuthContext } from '../../context/Auth';
 import { criarCookie } from '../../context/cookie';
 import { ERRO_TYPES, COOKIE_TYPES, LOGIN_TYPES } from '../../utils/types';
 import Box, { BoxProps } from '@mui/material/Box';
 import './index.css';
 import { fazerLogin } from '../../api/auth';
+import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
 
 export default function Login() {
@@ -44,34 +45,40 @@ export default function Login() {
       return returnMessage;
     }
 
-    const login = await fazerLogin({ "username": username, "password": password });
+    try {
 
-  
-    if (login.erro && login.erro.isAxiosError) {
-      if (!login.erro.response) {
-        /* caso o back-end caiu */
-        return setErro(ERRO_TYPES.GENERICO.msg);
-      } else if (login.erro.response.status === 401) {
-        const returnMessage = element.innerHTML = "Erro, informações inválidas!";
-        return returnMessage;
-      } else if (login.erro.response.status === 400) {
-        return setErro(ERRO_TYPES.JWT_NAO_AUTENTICADO.msg);
-      } else {
-        return setErro(ERRO_TYPES.GENERICO.msg);
+      const login = await fazerLogin({ "username": username, "password": password });
+
+      if (login.erro && login.erro.isAxiosError) {
+        if (!login.erro.response) {
+          /* caso o back-end caiu */
+          return setErro(ERRO_TYPES.GENERICO.msg);
+        } else if (login.erro.response.status === 401) {
+          const returnMessage = element.innerHTML = "Erro, informações inválidas!";
+          return returnMessage;
+        } else if (login.erro.response.status === 400) {
+          return setErro(ERRO_TYPES.JWT_NAO_AUTENTICADO.msg);
+        } else {
+          return setErro(ERRO_TYPES.GENERICO.msg);
+        }
       }
+  
+      const token = login.data.access_token;
+  
+      element.innerHTML = "Dados enviados com sucesso! caso não ocorra nada, verifique seus dados.";
+      
+      criarCookie(COOKIE_TYPES.USUARIO, token);
+  
+      contexto.dispatch({ type: LOGIN_TYPES.OK, dados: { token } })
+  
+      localStorage.setItem('token', token);
+  
+      element.innerHTML = "Login efetuado com sucesso!";
+
+      history("/home");
+    } catch(err) {
+      return element.innerHTML = "Erro, usuário não autorizado!";
     }
-
-    const token = login.data.access_token;
-
-    element.innerHTML = "Dados enviados com sucesso! caso não ocorra nada, verifique seus dados.";
-    
-    criarCookie(COOKIE_TYPES.USUARIO, token);
-
-    contexto.dispatch({ type: LOGIN_TYPES.OK, dados: { token } })
-
-    localStorage.setItem('token', token);
-
-    history("/home");
 
   }
 
@@ -93,7 +100,8 @@ export default function Login() {
           <Link href="/signup" underline="none" sx={{ mb: 5 }}>Não possui uma conta?</Link>
           <Box textAlign="center" sx={{ mb: 3 }}>
             <Button variant="contained" color="primary" onClick={onSubmit}>
-              <strong>Entrar</strong>
+              <strong>Entrar </strong>
+              <LoginIcon />
             </Button>
           </Box>
         </FormControl>
