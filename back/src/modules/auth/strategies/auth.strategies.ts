@@ -22,7 +22,7 @@ const localStrategy = new LocalStrategy(
 
             return done(null, { "access_token": JwtService.gerarToken(user[0]) })
         } catch (err) {
-            return console.log(err as Error);
+            return console.error(err as Error);
         }
     })
 

@@ -13,11 +13,11 @@ app.use(
         origin: "http://localhost:3000"
     }));
 route.get('/', function (req: any, res: any) {
-    res.json({ status: 'ok' })
+    res.json({ status: 'System is working, good job!' })
 });
+route.use('/login', routerLogin)
 route.use('/user', routerUser);
 route.use('/sistema', routerSistema)
-route.use('/login', routerLogin)
 route.use('/games', routerGames)
 
 export default route;

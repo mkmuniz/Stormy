@@ -67,5 +67,5 @@ export async function patchOne(req: express.Request, res: express.Response) {
     const { id } = req.params;
     const { body } = req;
     const results = await gamesService.patchOne(id, body);
-    return res.status(RESPONSE.HTTP_STATUS.OK).send(results);
+    return res.status(200).send(results);
 }
