@@ -6,9 +6,11 @@ import NavBar from '../../components/navbar/index';
 import Typography from '@mui/material/Typography';
 import { mudarUsuario } from '../../api/perfil';
 import { useNavigate } from 'react-router';
+
 export default function Perfil() {
     const [name, setName] = React.useState(null);
     const [email, setEmail] = React.useState(null);
+    const history = useNavigate();
     const getToken: any = localStorage.getItem('token');
     const token: any = jwtDecode(getToken);
 
@@ -20,24 +22,6 @@ export default function Perfil() {
         setEmail(e.target.value);
     }
 
-    const history = useNavigate();
-
-    const mudarPerfil = async (e: any) => {
-        const element: any = document.getElementById('message');
-        if(name === null) {
-            const returnMessage = element.innerHTML = "Dados enviados com sucesso!";
-            return await mudarUsuario(token._id, {"email": email}) && returnMessage && history('/logout');
-        } else if(email === null) {
-            const returnMessage = element.innerHTML = "Dados enviados com sucesso!";
-            return await mudarUsuario(token._id, {"username": name}) && returnMessage && history('/logout');
-        } else if (name === null && email === null) {
-            const returnMessage = element.innerHTML = "Erro, campos não preenchidos!";
-            return returnMessage;
-        } else {
-            const returnMessage = element.innerHTML = "Dados enviados com sucesso!";
-            return await mudarUsuario(token._id, {"username": name}) && returnMessage && history('/logout');
-        }
-    }
     return <>
         <NavBar />
         <Box sx={{ m: 0, p: 0, width: "100%", height: "100%", bgcolor: "#ffffff" }}>
