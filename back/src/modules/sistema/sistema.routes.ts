@@ -5,8 +5,8 @@ import { Router } from 'express';
 const router = Router();
 
 router
-    .get('/:id', sistemaController.buscarUm)
     .get('/', sistemaController.getAll)
-    .post('/', sistemaController.criar)
+    .get('/:id', sistemaController.getOne)
+    .post('/', sistemaController.createOne)
 
 module.exports = router;
