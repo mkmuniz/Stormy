@@ -1,13 +1,14 @@
 import React, { useState, useContext } from 'react';
-import { Button, FormControl, InputLabel, Grid, Link, TextField, Card, Typography } from '@mui/material';
-import { AuthContext } from '../../context/Auth';
-import { criarCookie } from '../../context/cookie';
 import { ERRO_TYPES, COOKIE_TYPES, LOGIN_TYPES } from '../../utils/types';
-import Box, { BoxProps } from '@mui/material/Box';
-import './index.css';
-import { fazerLogin } from '../../api/auth';
+import { Button, FormControl, Link, TextField, Grid } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate } from 'react-router-dom';
+import Box from '@mui/material/Box';
+import { AuthContext } from '../../context/Auth';
+import { criarCookie } from '../../context/cookie';
+import { fazerLogin } from '../../api/auth';
+import './index.css';
+
 
 export default function Login() {
   const [username, setUsername] = React.useState("");

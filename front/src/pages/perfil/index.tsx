@@ -5,12 +5,10 @@ import Footer from '../../components/footer/index';
 import NavBar from '../../components/navbar/index';
 import Typography from '@mui/material/Typography';
 import { mudarUsuario } from '../../api/perfil';
-import { useNavigate } from 'react-router';
 
 export default function Perfil() {
     const [name, setName] = React.useState(null);
     const [email, setEmail] = React.useState(null);
-    const history = useNavigate();
     const getToken: any = localStorage.getItem('token');
     const token: any = jwtDecode(getToken);
 
@@ -20,6 +18,10 @@ export default function Perfil() {
 
     const onChangeEmail = (e: any) => {
         setEmail(e.target.value);
+    }
+
+    const mudarPerfil = async () => {
+        await mudarUsuario(token._id, {"username": name, "email": email})
     }
 
     return <>
