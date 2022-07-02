@@ -4,13 +4,15 @@ import React from 'react';
 import Footer from '../../components/footer/index';
 import NavBar from '../../components/navbar/index';
 import Typography from '@mui/material/Typography';
-import { mudarUsuario } from '../../api/perfil';
+import { mudarPerfil } from './requests';
+import { useNavigate } from 'react-router';
 
 export default function Perfil() {
     const [name, setName] = React.useState(null);
     const [email, setEmail] = React.useState(null);
     const getToken: any = localStorage.getItem('token');
     const token: any = jwtDecode(getToken);
+    const history = useNavigate();
 
     const onChangeUsername = (e: any) => {
         setName(e.target.value);
@@ -20,8 +22,10 @@ export default function Perfil() {
         setEmail(e.target.value);
     }
 
-    const mudarPerfil = async () => {
-        await mudarUsuario(token._id, {"username": name, "email": email})
+    const onSubmitChanges: any = async () => {
+        await mudarPerfil(token._id, email, name)
+
+        history('/logout');
     }
 
     return <>
@@ -31,7 +35,9 @@ export default function Perfil() {
                 <Grid item xs={7} md={4}>
                     <Card sx={{ m: 5, maxWidth: 600, maxHeght: 600 }}>
                         <Typography align='center'>
+
                             <h2>Perfil</h2>
+
                             <TextField
                                 required
                                 id="outlined-required"
@@ -49,7 +55,9 @@ export default function Perfil() {
                                 sx={{ m: 2 }}
                             />
                             <h4 id="message"></h4>
-                            <Button sx={{ m:2 }} variant="contained" onClick={mudarPerfil}>Salvar alterações</Button>
+
+                            <Button sx={{ m:2 }} variant="contained" onClick={onSubmitChanges()} >Salvar alterações</Button>
+
                         </Typography>
                     </Card>
                 </Grid>
