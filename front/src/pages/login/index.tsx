@@ -8,6 +8,7 @@ import { AuthContext } from '../../context/Auth';
 import { criarCookie } from '../../context/cookie';
 import { fazerLogin } from '../../api/auth';
 import './index.css';
+import ErroTemplate from '../../components/errorMessages';
 
 
 export default function Login() {
@@ -32,6 +33,7 @@ export default function Login() {
       return contexto.mensagemErro
     }
   });
+
   const onSubmit = async (event: any) => {
 
     event.preventDefault();
@@ -108,5 +110,6 @@ export default function Login() {
         </FormControl>
       </Box>
     </Grid>
+    <ErroTemplate />
   </>
 }
