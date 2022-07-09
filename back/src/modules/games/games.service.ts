@@ -3,35 +3,36 @@ const bcrypt = require('bcrypt');
 
 
 export default class gamesService {
+
     static async getAll() {
         try {
             return await Games.find();
-        } catch(err: any) {
-            throw new Error("Erro on the try to search all the games");
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
-    
+
     static async getOne(id: string) {
         try {
             return await Games.findById(id);
-        } catch(err: any) {
-            throw new Error("Erro trying to search a game by id");
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 
     static async postOne(body: any) {
         try {
             return await Games.create(body);
-        } catch(err: any) {
-            throw new Error("Erro when creating a new game object");
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 
     static async postComentario(id: String, body: any) {
         try {
-            return await Games.findByIdAndUpdate(id, {$push: { comentarios: [{ autor: body.autor, coment: body.coment, nota: body.nota }]}});
-        } catch(err: any) {
-            throw new Error(err);
+            return await Games.findByIdAndUpdate(id, { $push: { comentarios: [{ autor: body.autor, coment: body.coment, nota: body.nota }] } });
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 
@@ -41,25 +42,25 @@ export default class gamesService {
             const listaComentarios = user.comentarios.filter((comentario: any) => {
                 return comentario._id = body.remetente;
             })
-            return listaComentarios.findOneAndUpdate(body.remetente, {$push: {"autor": body.autor, "comentario": body.comentario, "nota": body.nota}});
-        } catch(err: any) {
-            return console.log(err as Error);
+            return listaComentarios.findOneAndUpdate(body.remetente, { $push: { "autor": body.autor, "comentario": body.comentario, "nota": body.nota } });
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 
     static async patchOne(id: string, body: any) {
         try {
             return await Games.findByIdAndUpdate(id, body);
-        } catch(err: any) {
-            return console.log(err as Error);
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 
     static async deleteOne(id: string) {
         try {
             return await Games.findByIdAndDelete(id);;
-        } catch(err: any) {
-            return console.log(err as Error);
+        } catch (e: any) {
+            throw new Error(e);
         }
     }
 }
