@@ -1,6 +1,6 @@
 # Stormy
 
-**What is?**
+**What is it?**
 
  Stormy is a web site created to rate web browser games available in internet, with game description, image, genre & title.
  
@@ -30,7 +30,7 @@
  ```
  
  **Fourth Step**
- Open a terminal for `front` folder and `back`. Thereafter, type:
+ Open a terminal in `front`,`back` folders and type:
   
    `npm run dev`
    
